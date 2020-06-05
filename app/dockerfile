@@ -7,9 +7,14 @@ WORKDIR /robot_dance
 COPY app.py /robot_dance
 COPY process_data.py /robot_dance
 COPY requirements.txt /robot_dance
+COPY requirements.jl /robot_dance
 
+RUN wget https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz
+RUN tar -xvzf julia-1.1.0-linux-x86_64.tar.gz
+RUN cp -r julia-1.1.0 /opt/
+RUN ln -s /opt/julia-1.1.0/bin/julia /usr/local/bin/julia
 RUN pip install -r requirements.txt
-
+RUN julia requirements.jl
 
 
 EXPOSE 8501
