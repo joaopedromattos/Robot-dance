@@ -1,0 +1,17 @@
+FROM python:3.8
+
+RUN mkdir -p /robot_dance
+
+WORKDIR /robot_dance
+
+COPY app.py /robot_dance
+COPY process_data.py /robot_dance
+COPY requirements.txt /robot_dance
+
+RUN pip install -r requirements.txt
+
+
+
+EXPOSE 8501
+
+CMD streamlit run app.py
